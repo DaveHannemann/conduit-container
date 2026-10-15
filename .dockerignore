@@ -1,0 +1,18 @@
+# Git metadata
+**/.git
+
+# Python virtual environments and cache
+**/.venv
+**/venv
+**/__pycache__
+**/*.py[cod]
+
+# Node dependencies and Angular build output
+**/node_modules
+**/dist
+**/.angular
+
+# Environment files and secrets
+.env
+**/.env
+**/.env.*
