@@ -1,0 +1,35 @@
+
+services:
+  # Angular frontend
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/frontend/Dockerfile
+    ports:
+      - "${FRONTEND_PORT}:${FRONTEND_CONTAINER_PORT}"
+    depends_on:
+      - backend
+    restart: on-failure
+
+  # Django backend
+  backend:
+    build:
+      context: .
+      dockerfile: docker/backend/Dockerfile
+    expose:
+      - "${BACKEND_PORT}:${BACKEND_CONTAINER_PORT}"
+    depends_on:
+      - db
+    restart: on-failure
+
+  # PostgreSQL database
+  db:
+    image: postgres:15
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: on-failure
+
+volumes:
+  postgres_data:
