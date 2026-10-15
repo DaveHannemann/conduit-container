@@ -16,7 +16,7 @@ services:
     build:
       context: .
       dockerfile: docker/backend/Dockerfile
-    expose:
+    ports:
       - "${BACKEND_PORT}:${BACKEND_CONTAINER_PORT}"
     depends_on:
       - db
